@@ -14,7 +14,7 @@ function App() {
     console.log(inputText);
   };
 
-  // [1]getting hold of "onChecked" prop and receiving "id" with it from "ToDoItem" [2]returning(rendering) only prevItems with index !== id:
+  // [1]getting hold of "onChecked" prop and receiving "id" with it from "ToDoItem" [2]returning only prevItems with index !== id:
   const deleteItem = (id) => {
     setItems((prevItems) => {
       return prevItems.filter((item, index) => {
