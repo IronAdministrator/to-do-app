@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ToDoItem from "./components/ToDoItem";
 
 function App() {
   // creating state for the input text:
@@ -15,7 +16,7 @@ function App() {
   // adding new items to an array of items with previous values:
   const addItem = (e) => {
     setItems((prevItems) => {
-      return [inputText, ...prevItems];
+      return [...prevItems, inputText];
     });
     e.preventDefault();
     setInputText("");
@@ -39,7 +40,7 @@ function App() {
           {
             // mapping through the array of items and adding new item to a new list
             items.map((item) => {
-              return <li>{item}</li>;
+              return <ToDoItem item={item} />;
             })
           }
         </ul>
