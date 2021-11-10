@@ -1,34 +1,26 @@
 import React, { useState } from "react";
+import InputArea from "./components/InputArea";
 import ToDoItem from "./components/ToDoItem";
 
 function App() {
-  // creating state for the input text:
-  const [inputText, setInputText] = useState("");
   // creating state to save the input value to an array:
   const [items, setItems] = useState([]);
 
-  // getting new input value and saving it in a state variable:
-  const changeHandler = (event) => {
-    const newValue = event.target.value;
-    setInputText(newValue);
-  };
-
-  // adding new items to an array of items with previous values:
-  const addItem = (e) => {
+  // [1]getting hold of "inputText" value from "InputArea" and [2]adding new items to an array of items with previous values:
+  const addItem = (inputText) => {
     setItems((prevItems) => {
-      return [...prevItems, inputText];
+      return [inputText, ...prevItems];
     });
-    e.preventDefault();
-    setInputText("");
+    console.log(inputText);
   };
 
+  // [1]getting hold of "onChecked" prop and receiving "id" with it from "ToDoItem" [2]returning(rendering) only prevItems with index !== id:
   const deleteItem = (id) => {
     setItems((prevItems) => {
       return prevItems.filter((item, index) => {
-        return index === !id;
+        return index !== id;
       });
     });
-    console.log(prevItem);
   };
 
   return (
@@ -36,14 +28,7 @@ function App() {
       <div className="heading">
         <h1>To-Do List</h1>
       </div>
-      <div className="form">
-        <form onSubmit={addItem}>
-          <input onChange={changeHandler} type="text" value={inputText} />
-          <button type="submit">
-            <span>Add</span>
-          </button>
-        </form>
-      </div>
+      <InputArea onAdd={addItem} />
       <div>
         <ul>
           {
